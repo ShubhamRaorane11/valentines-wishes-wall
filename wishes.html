@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="wishes-section">
+
+    <h1 class="wishes-title">Wishes Wall 💌</h1>
+    <p class="wishes-subtitle">Post a sweet message and watch it appear below.</p>
+
+    <!-- Wish Form -->
+    <form
+        id="wishForm"
+        class="wish-form"
+        method="POST"
+        action="{{ url_for('wishes') }}"
+    >
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name (optional)"
+            maxlength="100"
+        >
+
+        <textarea
+            id="message"
+            name="message"
+            placeholder="Write your wish..."
+            rows="3"
+            maxlength="300"
+            required
+        ></textarea>
+
+        <button type="submit" class="btn-primary">Send with ❤️</button>
+
+        <p id="status" class="form-status"></p>
+    </form>
+
+    <hr class="divider">
+
+    <!-- Empty State -->
+    {% if wishes|length == 0 %}
+        <div class="empty-state">
+            <div class="empty-heart">❤</div>
+            <h3>No wishes yet</h3>
+            <p>Be the first to send one! 💖</p>
+        </div>
+    {% endif %}
+
+    <!-- Wishes Grid -->
+    <div id="wishesGrid" class="wishes-grid">
+        {% for w in wishes %}
+        <div class="wish-card" data-id="{{ w.id }}">
+
+            <div class="wish-header">
+                <span class="wish-name">{{ w.name or "Someone" }}</span>
+                <span class="wish-time">
+                    {{ w.created_at.strftime("%d %b %Y %I:%M %p") }}
+                </span>
+            </div>
+
+            <p class="wish-text">{{ w.message }}</p>
+
+            <!-- DELETE BUTTON (no JS, works 100%) -->
+            <form method="POST" action="{{ url_for('delete_wish_form', wish_id=w.id) }}">
+                <button class="delete-btn" type="submit">🗑️</button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
