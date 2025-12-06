@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-left">
+        <p class="hero-tag">Valentine Special · 2025</p>
+
+        <h1 class="hero-title">
+            Send a <span>secret Valentine wish</span> in style 💌
+        </h1>
+
+        <p class="hero-subtitle">
+            A cute little space where you can drop anonymous or named Valentine
+            messages and watch them appear on the beautiful Wishes Wall.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{{ url_for('wishes') }}" class="btn-primary">Go to Wishes Wall ❤️</a>
+            <button class="btn-ghost" type="button">Just looking 👀</button>
+        </div>
+
+        <div class="hero-meta">
+            <span>💖 Spread Love</span>
+            <span>💌 Spread Love</span>
+            <span>🌸 Feel the Magic</span>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="heart-orbit">
+            <div class="heart-main">❤</div>
+            <div class="heart-small heart-small-1">❤</div>
+            <div class="heart-small heart-small-2">❤</div>
+            <div class="heart-small heart-small-3">❤</div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
